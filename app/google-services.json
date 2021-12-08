@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "778425722135",
+    "project_id": "gads-ag19-quiz-app",
+    "storage_bucket": "gads-ag19-quiz-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778425722135:android:e7505684c67776f7248352",
+        "android_client_info": {
+          "package_name": "com.example.gadsag19educationquiz"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "778425722135-u21durtoss2u73lfvl5k6ka8re9r3q79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwsr-z8VKvTX1tCxVKpsondlXSOt13Hnk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "778425722135-u21durtoss2u73lfvl5k6ka8re9r3q79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
