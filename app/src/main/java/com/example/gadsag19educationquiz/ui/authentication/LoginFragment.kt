@@ -1,6 +1,9 @@
-package com.example.gadsag19educationquiz.ui.authentecation
+package com.example.gadsag19educationquiz.ui.authentication
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,11 +11,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
-import androidx.core.widget.doOnTextChanged
-import com.example.gadsag19educationquiz.DashboardActivity
+import androidx.navigation.fragment.findNavController
 import com.example.gadsag19educationquiz.R
+import com.example.gadsag19educationquiz.ui.DashboardActivity
 import com.example.gadsag19educationquiz.databinding.FragmentLoginBinding
-import com.example.gadsag19educationquiz.databinding.FragmentSignUpBinding
+import com.example.gadsag19educationquiz.util.Constants
+import com.example.gadsag19educationquiz.util.Constants.TOKEN
+import com.example.gadsag19educationquiz.util.SessionManager
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginFragment : Fragment() {
@@ -20,6 +25,8 @@ class LoginFragment : Fragment() {
     private val binding: FragmentLoginBinding get() = _binding!!
     lateinit var auth: FirebaseAuth
     lateinit var email: EditText
+    private lateinit var sessionManager: SessionManager
+    lateinit var pref: SharedPreferences
     lateinit var password: EditText
 
     override fun onCreateView(
@@ -34,6 +41,9 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        pref = this.requireActivity().getSharedPreferences(Constants.TOKEN, Context.MODE_PRIVATE)
+        sessionManager = SessionManager(pref)
+
         email = binding.loginFragmentEmailAddressEditText
         password = binding.loginFragmentPasswordEditText
 
@@ -46,36 +56,9 @@ class LoginFragment : Fragment() {
                 return@setOnClickListener
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        validateSignUpFieldsOnTextChange()
-    }
-
-    /*Method to Validate input Field onText Change*/
-    private fun validateSignUpFieldsOnTextChange(): Boolean {
-        var isValidated = true
-
-        email.doOnTextChanged { _, _, _, _ ->
-            when {
-                email.text.toString().trim().isEmpty() -> {
-                    binding.loginFragmentEmailAddressTextInputLayout.error =
-                        getString(R.string.enter_email_address)
-                    isValidated = false
-                }
-                password.text.toString().trim().isEmpty()-> {
-                    binding.loginFragmentPasswordTextInputLayout.error =
-                        getString(R.string.enter_password)
-                    isValidated = false
-                }
-                else -> {
-                    binding.loginFragmentEmailAddressTextInputLayout.error = null
-                    isValidated = true
-                }
-            }
+        binding.loginFragmentSignUpForFreeTextView.setOnClickListener {
+            findNavController().navigate(R.id.signUpFragment)
         }
-        return isValidated
     }
 
     private fun login() {
@@ -87,8 +70,10 @@ class LoginFragment : Fragment() {
         auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
             if (task.isSuccessful) {
                 binding.progressBar.visibility = View.GONE
+                sessionManager.saveToSharedPref(TOKEN, email)
                 val intent = Intent(requireContext(), DashboardActivity::class.java)
                 startActivity(intent)
+                activity?.finish()
             }
         }.addOnFailureListener { exception ->
             binding.progressBar.visibility = View.GONE

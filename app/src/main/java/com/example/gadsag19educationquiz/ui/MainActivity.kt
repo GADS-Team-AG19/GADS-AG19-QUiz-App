@@ -1,10 +1,10 @@
-package com.example.gadsag19educationquiz
+package com.example.gadsag19educationquiz.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Window
-import android.view.WindowManager
 import androidx.core.content.ContextCompat
+import com.example.gadsag19educationquiz.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

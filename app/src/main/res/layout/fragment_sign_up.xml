@@ -173,6 +173,34 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/email_sign_up_fragment_have_account_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_76dp"
+            android:fontFamily="@font/poppins"
+            android:text="@string/all_have_an_account"
+            android:textColor="@color/dark_brown"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/signup_button"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="@+id/signup_button"
+            app:layout_constraintTop_toTopOf="@+id/email_sign_up_fragment_login_text_view"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/email_sign_up_fragment_login_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_18dp"
+            android:layout_marginTop="@dimen/margin_18dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@string/all_login"
+            android:textColor="@color/dark_brown"
+            app:layout_constraintStart_toEndOf="@+id/email_sign_up_fragment_have_account_text_view"
+            app:layout_constraintTop_toBottomOf="@+id/signup_button" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

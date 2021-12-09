@@ -1,4 +1,4 @@
-package com.example.gadsag19educationquiz.ui.authentecation
+package com.example.gadsag19educationquiz.ui.authentication
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.gadsag19educationquiz.R
 import com.example.gadsag19educationquiz.databinding.FragmentSignUpBinding
-import com.example.gadsag19educationquiz.model.UserModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
@@ -18,8 +17,7 @@ import com.google.firebase.database.FirebaseDatabase
 class SignUpFragment : Fragment() {
     private var _binding: FragmentSignUpBinding? = null
     private val binding: FragmentSignUpBinding get() = _binding!!
-    var hashMap: HashSet<UserModel> = hashSetOf()
-    lateinit var auth: FirebaseAuth
+    private lateinit var auth: FirebaseAuth
     lateinit var firebase: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
     lateinit var firstName: EditText
@@ -54,6 +52,11 @@ class SignUpFragment : Fragment() {
                 return@setOnClickListener
             }
         }
+
+        binding.emailSignUpFragmentLoginTextView.setOnClickListener {
+            findNavController().navigate(R.id.loginFragment)
+        }
+
     }
 
     private fun register() {
@@ -73,11 +76,16 @@ class SignUpFragment : Fragment() {
                 currentUserObj?.child("lastName")?.setValue(lastName)
                 Toast.makeText(requireContext(), "Successful", Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.loginFragment)
-//                findNavController().popBackStack()
             }
+
         }.addOnFailureListener { exception ->
             binding.progressBar.visibility = View.GONE
             Toast.makeText(requireContext(), exception.localizedMessage, Toast.LENGTH_SHORT).show()
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
