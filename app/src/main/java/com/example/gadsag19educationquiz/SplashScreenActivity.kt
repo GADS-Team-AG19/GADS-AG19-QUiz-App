@@ -5,6 +5,10 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import androidx.core.content.ContextCompat
 import com.example.gadsag19educationquiz.ui.DashboardActivity
 import com.example.gadsag19educationquiz.ui.MainActivity
 import com.example.gadsag19educationquiz.util.Constants
@@ -18,9 +22,9 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
-        pref = application.getSharedPreferences(Constants.TOKEN, Context.MODE_PRIVATE)
 
-        sessionManager = SessionManager(pref)
+        pref = application.getSharedPreferences(Constants.TOKEN, Context.MODE_PRIVATE)
+       sessionManager = SessionManager(pref)
 
 
         /*Move to the home page after showing splash screen for X milliseconds*/

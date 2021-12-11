@@ -108,17 +108,6 @@
             app:layout_constraintStart_toStartOf="@+id/login_fragment_password_text_input_layout"
             app:layout_constraintTop_toBottomOf="@+id/login_fragment_password_text_input_layout" />
 
-        <ProgressBar
-            android:id="@+id/progress_bar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:indeterminateTint = "@color/pink_700"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
 
         <TextView
             android:id="@+id/login_fragment_sign_up_for_free_text_view"
@@ -133,5 +122,16 @@
             app:layout_constraintStart_toStartOf="@+id/login_button"
             app:layout_constraintTop_toBottomOf="@+id/login_button" />
 
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:elevation="5dp"
+            android:indeterminateTint = "@color/pink_700"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
