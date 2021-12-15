@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/dashboard_navgraph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/subjectFragment">
 
     <fragment
         android:id="@+id/homeFragment"
@@ -25,4 +25,26 @@
             android:name="subjects"
             app:argType="com.example.gadsag19educationquiz.model.Subjects" />
     </fragment>
+    <fragment
+        android:id="@+id/subjectFragment"
+        android:name="com.example.gadsag19educationquiz.ui.dashboard.SubjectFragment"
+        android:label="SubjectFragment" >
+        <action
+            android:id="@+id/action_subjectFragment_to_computerFragment"
+            app:destination="@id/computerFragment" />
+        <action
+            android:id="@+id/action_subjectFragment_to_philosophyFragment"
+            app:destination="@id/philosophyFragment" />
+        <action
+            android:id="@+id/action_subjectFragment_to_quizFragment"
+            app:destination="@id/quizFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/computerFragment"
+        android:name="com.example.gadsag19educationquiz.ui.dashboard.ComputerFragment"
+        android:label="ComputerFragment" />
+    <fragment
+        android:id="@+id/philosophyFragment"
+        android:name="com.example.gadsag19educationquiz.ui.dashboard.PhilosophyFragment"
+        android:label="PhilosophyFragment" />
 </navigation>

@@ -14,15 +14,15 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.gadsag19educationquiz.R
-import com.example.gadsag19educationquiz.databinding.FragmentQuizBinding
+import com.example.gadsag19educationquiz.databinding.FragmentComputerBinding
 import com.example.gadsag19educationquiz.model.Question
+import com.example.gadsag19educationquiz.util.QuestionList.computer_questions
 import com.example.gadsag19educationquiz.util.QuestionList.science_questions
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-class QuizFragment : Fragment() {
+class ComputerFragment : Fragment() {
     private val args: QuizFragmentArgs by navArgs()
-    private lateinit var toolbar: Toolbar
-    private lateinit var binding: FragmentQuizBinding
+    private lateinit var binding: FragmentComputerBinding
     private val quizViewModel: QuizViewModel by viewModels()
 
 
@@ -30,7 +30,7 @@ class QuizFragment : Fragment() {
     lateinit var answers: MutableList<String>
     private var questionIndex = 0
     private var score = 0
-    private val numQuestions = Math.min((science_questions.size + 1), 9)
+    private val numQuestions = Math.min((computer_questions.size + 1), 9)
 
 
     override fun onCreateView(
@@ -38,7 +38,7 @@ class QuizFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_quiz, container, false)
+        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_computer, container, false)
         return binding.root
     }
 
@@ -63,7 +63,7 @@ class QuizFragment : Fragment() {
                     binding.questionRadioGroup.clearCheck()
                     // Advance to the next question
                     if (questionIndex < numQuestions) {
-                        currentQuestion = science_questions[questionIndex]
+                        currentQuestion = computer_questions[questionIndex]
                         setQuestion()
                         binding.invalidateAll()
                     } else {
@@ -99,7 +99,6 @@ class QuizFragment : Fragment() {
     private fun restartGame() {
         findNavController().popBackStack()
     }
-
     private fun randomizeQuestions() {
         science_questions.shuffle()
         questionIndex = 0
@@ -108,7 +107,7 @@ class QuizFragment : Fragment() {
     }
 
     private fun setQuestion() {
-        currentQuestion = science_questions[questionIndex]
+        currentQuestion = computer_questions[questionIndex]
         answers = currentQuestion.answers.toMutableList()
         answers.shuffle()
         binding.wordCount.text = getString(R.string.title_question, questionIndex + 1, numQuestions)
@@ -117,7 +116,7 @@ class QuizFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        (activity as AppCompatActivity).supportActionBar!!.title = "Science Quiz"
+        (activity as AppCompatActivity).supportActionBar!!.title = "Computer Quiz"
     }
 
     override fun onStop() {
@@ -125,6 +124,5 @@ class QuizFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar!!.title = "Subjects"
 
     }
-
 
 }

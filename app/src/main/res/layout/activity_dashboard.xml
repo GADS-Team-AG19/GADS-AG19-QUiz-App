@@ -19,6 +19,7 @@
             android:id="@+id/dashboard_activity_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:titleTextColor="@color/white"
             android:background="@drawable/toolbar_background">
 
 

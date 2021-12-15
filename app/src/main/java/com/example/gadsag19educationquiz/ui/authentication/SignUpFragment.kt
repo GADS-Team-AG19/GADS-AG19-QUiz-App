@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.gadsag19educationquiz.R
 import com.example.gadsag19educationquiz.databinding.FragmentSignUpBinding
@@ -15,8 +16,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 class SignUpFragment : Fragment() {
-    private var _binding: FragmentSignUpBinding? = null
-    private val binding: FragmentSignUpBinding get() = _binding!!
+    private lateinit var binding: FragmentSignUpBinding
     private lateinit var auth: FirebaseAuth
     lateinit var firebase: FirebaseDatabase
     lateinit var databaseReference: DatabaseReference
@@ -30,7 +30,7 @@ class SignUpFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
-        _binding = FragmentSignUpBinding.inflate(inflater,container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_up,container, false)
         return binding.root
     }
 
@@ -86,6 +86,5 @@ class SignUpFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
     }
 }
