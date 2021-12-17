@@ -89,6 +89,7 @@ class QuizFragment : Fragment() {
                 restartGame()
             }
             .show()
+
     }
 
 
